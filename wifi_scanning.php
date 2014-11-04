@@ -20,7 +20,7 @@
         <h1>MUSICAM</h1>
       </div>
         <ul class="nav nav-pills" role="tablist">
-          <li role="presentation" ><a href="#">Home</a></li>
+          <li role="presentation" ><a href="home.php">Home</a></li>
           <li role="presentation" class="active"><a href="#">Scanning Wireless</a></li>
         </ul>
        <div class="row marketing">
@@ -39,12 +39,14 @@
               <th>Encryption</th>
               <th>Type of Encryption</th>
               <th>Quality</th>
+              </th>Operation</th>
             <thead>
             <?php foreach ($wifi_networks_parsed as $key => $wifi) { ?>
               <tr>
                <?php foreach ($wifi as $key2 => $value){ ?>
                  <td><?php echo($value); ?></td> 
                <?php } ?>
+               <td><a href="#">Connect</a></td>
               </tr>
             <?php } ?>
           </table>
