@@ -35,13 +35,58 @@
        echo("<br/><br/><br/><br/>");
      }
    }
- 
-  function get_network_details($network)
-  {
-    $network_details=array("SSID"=>"",
-                           "Encryption key"=>"",
-                           "Quality"=>"");
-  } 
+
+   function parse_wifi_networks($networks){
+     
+     $mini_network=array();
+     $cont=0;
+
+     foreach($networks as $network){
+       
+       foreach($network as $field){
+
+         if(strpos($field,"ESSID")!==FALSE)
+         {
+           $aux_arr=explode(":",$field);
+           $key=$aux_arr[0];
+           $value=$aux_arr[1];
+           $mini_network[$cont][$key]=$value; 
+         }
+
+         if(strpos($field,"Frequency")!==FALSE){
+           $aux_arr=explode(":",$field);
+           $key=$aux_arr[0];
+           $value=$aux_arr[1];
+           $mini_network[$cont][$key]=$value;
+         } 
+
+         if(strpos($field,"Encryption key")!==FALSE){
+           $aux_arr=explode(":",$field);
+           $key=$aux_arr[0];
+           $value=$aux_arr[1];
+           $mini_network[$cont][$key]=$value;
+         }
+
+         if(strpos($field,"WPA")!==FALSE){
+           $aux_arr=explode(":",$field);
+           $key=$aux_arr[0];
+           $value=$aux_arr[1];
+           $mini_network[$cont][$key]=$value;
+         }
+
+         if(strpos($field,"Quality")!==FALSE){
+           $aux_arr=explode("=",$field);
+           $key=$aux_arr[0];
+           $value=$aux_arr[1];
+           $mini_network[$cont][$key]=$value;
+         }
+
+
+       }
+       $cont++;
+     }
+     return $mini_network; 
+   }
 
 ?>
 
@@ -59,22 +104,10 @@
     </div>
     <div class="container"> 
       <?php $wifi_networks=get_wifi_networks();
-            show_wifi_networks($wifi_networks);
+            //show_wifi_networks($wifi_networks);
+            $wifi_networks_parsed=parse_wifi_networks($wifi_networks);
+            show_wifi_networks($wifi_networks_parsed);
        ?>
-      <table>
-       <thead>
-         <tr>
-          <th>ESSID</th>
-          <th>Encryption key</th>
-         </tr> 
-       </thead>
-       <tbody>
-         <tr>
-           <td></td>
-           <td></td>
-         </tr>
-       </tbody>
-      </table> 
     </div>
   </body>
 </html>
