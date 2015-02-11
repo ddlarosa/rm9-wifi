@@ -1,4 +1,5 @@
 <?php include_once "helper/status.php"; ?>
+<?php include_once "helper/base.php"; ?>
 
 <!DOCTYPE html>
 <html>
@@ -27,18 +28,26 @@
         <div class="col-lg-6">
           <h3>Wi-Fi </h3>
           <?php 
+            $wlan0=check_wlan0();
+            $has_ip=have_ip();
             $ip_arr=get_ip();
             $mac=explode(" ",$ip_arr[0]);
             $ips=explode(" ",$ip_arr[1]);
             $dns=get_dns();
             $get_way=get_route();
           ?>
+          <?php if(($wlan0==TRUE) && ($has_ip==TRUE)) { ?>  
             <b>MAC: </b><?php echo($mac[9]); ?><br/> 
             <b>IP: </b><?php echo(substr($ips[11],5)); ?><br/>     
             <b>Mask: </b><?php echo(substr($ips[15],5)); ?><br/>
             <b>GW: </b><?php echo(substr($get_way[2],7,20)); ?><br/>
             <b>DNS1: </b><?php echo(substr($dns[1],10)); ?><br/>
             <b>DNS2: </b><?php echo(substr($dns[2],10)); ?><br/>
+         <?php } else if ($wlan0==FALSE){ ?>
+            <p>Please, check if wireless device is plugged</p>
+         <?php } else{ ?>
+            <p>You are not connected, please settings your wireless configuration</p> 
+         <?php } ?>
         </div>
        </div>
     </div>
