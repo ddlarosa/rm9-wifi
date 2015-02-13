@@ -16,6 +16,10 @@ function write_interface($interface_str){
  return $file_created;
 }
 
+function remove_interfaces(){
+  return unlink("/etc/network/interfaces"); 
+}
+
 function ifdownwlan0(){
   return exec('ifdown wlan0');
 }
@@ -47,8 +51,9 @@ function create_interfaces($essid,$password){
      $interface_output.=$value."\n";
    }
  }
- 
- write_interface($interface_output);
+
  $result_clone=clone_interface();
+ remove_interfaces();
+ write_interface($interface_output);
 }
 ?>

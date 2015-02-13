@@ -24,4 +24,10 @@
     return $result_getway;
   }
 
+  function get_iwconfig(){
+    $result_iwconfig=array();
+    exec('/sbin/iwconfig',$result_iwconfig);
+    return $result_iwconfig;
+  }
+
 ?>

@@ -26,7 +26,6 @@
         </ul>
        <div class="row marketing">
         <div class="col-lg-6">
-          <h3>Wi-Fi </h3>
           <?php 
             $wlan0=check_wlan0();
             $has_ip=have_ip();
@@ -35,8 +34,26 @@
             $ips=explode(" ",$ip_arr[1]);
             $dns=get_dns();
             $get_way=get_route();
+            $result_iwconfig=get_iwconfig();
+            $ESSID=$result_iwconfig[0];
+            $ESSID_init=strpos($ESSID,"ESSID:");
+            $Nickname_init=strpos($ESSID,"Nickname");
+            $ESSID_str=substr($ESSID,$ESSID_init,$Nickname_init);
+            $ESSID_str=str_replace("\"","",$ESSID_str);
+            $ESSID_str=str_replace("ESSID:","",$ESSID_str);
+            $ESSID_str=str_replace("Nickname:","",$ESSID_str);
+            $BitRate=$result_iwconfig[2];
+            $BitRate_str=substr($BitRate,0,strpos($BitRate,"Sensitivity"));
+            $BitRate_str=str_replace("Bit Rate:","",$BitRate_str);
+            $Quality=$result_iwconfig[5];
+            $Quality_str=substr($Quality,0,strpos($Quality,"Signal"));
+            $Quality_str=str_replace("Link Quality=","",$Quality_str);
           ?>
+          <h3><?php echo($ESSID_str); ?>  </h3>
           <?php if(($wlan0==TRUE) && ($has_ip==TRUE)) { ?>  
+            <b>Estado:</b> Conectado<br/>
+            <b>Quality: </b><?php echo($Quality_str); ?><br/>
+	    <b>Speed: </b><?php echo($BitRate_str); ?><br/> 
             <b>MAC: </b><?php echo($mac[9]); ?><br/> 
             <b>IP: </b><?php echo(substr($ips[11],5)); ?><br/>     
             <b>Mask: </b><?php echo(substr($ips[15],5)); ?><br/>
