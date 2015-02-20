@@ -7,6 +7,10 @@
 
     <!-- Bootstrap core CSS -->
     <link href="app/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Link to Bootstrap core javascript -->
+    <script src="app/dist/js/bootstrap.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -30,10 +34,24 @@
             <h2><?php echo($_GET["essid"]); ?></h2>
             <b>Password</b><br/>
             <input type="hidden" name="essid" value="<?php echo($_GET["essid"]); ?>"/>
-            <input type="text" name="password"></input><br/><br/>
-            <input type="checkbox" name="vehicle" value="Bike"> Show password<br/>
-            <input type="checkbox" name="vehicle" value="Car" checked> Opciones avanzadas<br/><br/>
-            <input type="submit" value="Connect"/><input type="button" value="Cancel"/>
+            <input id="password" type="password" name="password"></input>
+            <input type="submit" class="btn btn-success" value="Connect"/><br/>
+            <input type="checkbox" onchange="document.getElementById('password').type = this.checked ? 'text' : 'password'"> Show password<br/><br/>
+            <a class="btn btn-warning" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Advanced Options</a><br/>
+            <div class="collapse" id="collapseExample">
+             <div class="well">
+               <b>IP</b><br/>
+               <input name="ip" type="text"></input><br/><br/>
+               <b>Getway</b><br/>
+               <input name="getway" type="text"></input><br/><br/>
+               <b>Net Mask</b><br/>
+               <input name="netmask" type="text"></input><br/><br/>
+               <b>DNS 1<b/><br/>
+               <input name="dns1" type=""></input><br/><br/>
+               <b>DNS 2<b/><br/>
+               <input name="dns2" type="text"></input><br/><br/>
+            </div>
+           </div>
           </form>
         </div>
     </div>
