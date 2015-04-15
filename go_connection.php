@@ -21,7 +21,7 @@
   <body>
     <div class="container">
       <div class="page-header">
-        <h1>Wifi configuration RM9</h1>
+        <h1>WIFI RM9</h1>
       </div>
         <ul class="nav nav-pills" role="tablist">
           <li role="presentation" class="active"><a href="#">Home</a></li>

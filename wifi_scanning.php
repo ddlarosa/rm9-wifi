@@ -1,9 +1,12 @@
 <?php include_once "helper/scanning_signals.php"; ?>
+<?php include_once "helper/autentication_utils.php"; ?>
+
+<?php is_valid_user(); ?>
 
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Wifi Configuration RM9</title>
+    <title>WIFI RM9</title>
 
     <!-- Bootstrap core CSS -->
     <link href="app/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -17,16 +20,16 @@
   <body>
     <div class="container">
       <div class="page-header">
-        <h1>MUSICAM</h1>
+        <h1>WIFI RM9</h1>
       </div>
         <ul class="nav nav-pills" role="tablist">
           <li role="presentation" ><a href="index.php">Home</a></li>
           <li role="presentation" class="active"><a href="#">Scanning Wireless</a></li>
+          <li role="presentation"><a href="logout.php">Log out</a></li>
         </ul>
+       <br/><br/>
        <div class="row marketing">
         <div class="col-lg-6">
-          <h3>Wi-Fi </h3>
-          <p></p>
           <?php $wifi_networks=get_wifi_networks();
             $wifi_networks_parsed=parse_wifi_networks($wifi_networks);
             //show_wifi_networks($wifi_networks_parsed);

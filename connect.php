@@ -1,9 +1,12 @@
 <?php include_once "helper/scanning_signals.php"; ?>
+<?php include_once "helper/autentication_utils.php"; ?>
+
+<?php is_valid_user(); ?>
 
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Wifi configuration RM9</title>
+    <title>WIFI RM9</title>
 
     <!-- Bootstrap core CSS -->
     <link href="app/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -21,11 +24,12 @@
   <body>
     <div class="container">
       <div class="page-header">
-        <h1>Wifi configuration RM9</h1>
+        <h1>WIFI RM9</h1>
       </div>
         <ul class="nav nav-pills" role="tablist">
           <li role="presentation" ><a href="index.php">Home</a></li>
           <li role="presentation" class="active"><a href="wifi_scanning.php">Scanning Wireless</a></li>
+          <li role="presentation"><a href="logout.php">Log out</a></li>
         </ul>
        <div class="row marketing">
         <div class="col-lg-6">
